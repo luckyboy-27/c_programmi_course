@@ -13,6 +13,7 @@ int convert_to_num(char c)
             break;
         }
     }
+    return 0;
 }
 
 int convert_to_num_2(char c)
@@ -26,6 +27,7 @@ int convert_to_num_2(char c)
             break;
         }
     }
+    return 0;
 }
 char convert_to_char(int i,string key)
 {
