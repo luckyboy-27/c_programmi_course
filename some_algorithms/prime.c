@@ -9,7 +9,7 @@ int main() {
 				x++; 
 			}
 		}
-		if (x==1) {
+		if (x==0 && i>1) {
 			printf("%d is prime\n", i);
 		}
 	}	
