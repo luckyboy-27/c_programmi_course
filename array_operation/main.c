@@ -20,10 +20,14 @@ int main() {
     printf("Array is initialized\n");
 
     //testing
+    printf("Original Array: \n");
     inputArray(arr, length);
     outputArray(arr, length);
     deleteElement(arr, &length, 2);
+    printf("\n");
+    outputArray(arr, length - 1);
     addElement(arr, &length, 4, 2);
+    printf("\n");
     outputArray(arr, length);
 
     //free memory

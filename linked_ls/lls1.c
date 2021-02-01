@@ -28,5 +28,7 @@ int main() {
         invest->symbol,
         invest->quantity,
         invest->price, invest->quantity*invest->price);
+    
+    free(invest);
     return(0);
 }
