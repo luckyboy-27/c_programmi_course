@@ -11,14 +11,15 @@ typedef struct list node;
 
 int count_nodes(node *head);
 int search(node *head, int value);
+int Get(node *head, int position);
 node *create(int value);
 node *insert_head(node *head, int value);
 node *insert_tail(node *head, int value);
 node *insert(node *head, int value, int position);
-void remove_head(node *head);
-void remove_tail(node * tail);
-void remove_position(node *head, int position);
-void remove_value(node *head, int value);
+node *remove_head(node *head);
+node *remove_tail(node *head);
+node *remove_position(node *head, int position);
+node *remove_value(node *head, int value);
 
 int main() {
     // First Node:
@@ -40,9 +41,19 @@ int main() {
     current->link = NULL;
     head->link->link = current; 
 
+    //testing
+
     //printf("New head is %d\n", insert_head(head, 31)->data);
     //printf("New tail is %d\n", insert_tail(head, 27)->data);
-    printf("new node at position 2 is %d\n", insert(head, 21, 2)->data);
+    //printf("first node is %d\n", head->data);
+    //printf("after: %d\n", remove_head(head)->data);
+    //printf("%d\n", remove_tail(head)->data);
+    //printf("after removing, count data change --> lost the tail node\n");
+    //printf("%d\n", GetValue(head, 5)); //input the position not the value
+    //printf("%d\n", remove_position(head, 0)->data);  // will lose 45 because i remove first position
+    //printf("after removing, count data change --> lost the node whose position we input\n");
+    printf("after removing, count data change --> lost the node whose value we input\n");
+    printf("%d\n", remove_value(head, 45)->data); // will return 98, because 45 is the first value
     printf("%d\n", count_nodes(head));
     //printf("%d\n", search(head, 27));
 
@@ -75,8 +86,24 @@ int search(node *head, int value) {
         }
         ++position;
     }
-    printf("Not found! ");
-    return 404; // for fun only xD
+    printf("Not Found! ");
+    return -1; // for fun only xD
+}
+
+int GetValue(node *head, int position) {
+    int x = 0;
+    node *ptr = head;
+    if (position <= count_nodes(head)) {
+        while (ptr->link != NULL && x != position) {
+            ++x;
+            ptr = ptr->link;
+        }
+        return ptr->data;
+    }
+    else {
+        printf("position not valid\n");
+        return 404;
+    }
 }
 
 node *create(int value) {
@@ -137,4 +164,50 @@ node *insert(node *head, int value, int position) {
         }
     }
     return new;
+}
+
+node *remove_head(node *head) {
+    if (head==NULL) {
+        printf("nothing to delete\n");
+    }
+    else {
+        head = head->link;
+    }
+    return head;
+}
+
+node *remove_tail(node *head) {
+    node *ptr = head;
+    if (head == NULL|| head->link == NULL) {
+        return remove_head(head);
+    }
+    while (ptr->link->link != NULL) {
+        ptr= ptr->link;
+    }
+    ptr->link = ptr->link->link;
+    return head;
+}
+
+node *remove_position(node *head, int position) {
+    node *ptr = head;
+    int x = 1;
+    if(position == 0 || head == NULL || head->link == NULL) {
+        head = remove_head(head);
+    }
+    
+    while (ptr->link->link != NULL && x != position) {
+        ptr = ptr->link;
+        ++x;
+    }
+    if (x != position) {
+        head = remove_tail(head);
+    } else {
+        ptr->link = ptr->link->link;
+    }
+    return head;
+}
+
+node *remove_value(node *head, int value) {
+    int position = search(head, value);
+    return remove_position(head, position);
 }
