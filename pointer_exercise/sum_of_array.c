@@ -12,8 +12,8 @@ int main() {
     printf("Enter your number: \n");
     for (i=0; i<num; i++) {
         //Equivalent to scanf("%d", &x[i]);
-        //because x is an array, if we use "x" only without any "[]" or sth else
-        //it will automatically think that x = &x[0], which is am address of x
+        //because x is an array, if we use "x" only without any "[]" or sth else,
+        //it will automatically think that x = &x[0], which is an address of x
         scanf("%d", x+i);
         // Equivalent to sum += x[i], * is necessary to print the value of x+i, which is an address of the elements in x.
         sum += *(x+i);

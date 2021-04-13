@@ -2,7 +2,7 @@
 int main() {
     int data[5];
 
-    printf("Enter elements: ");
+    printf("Enter elements: \n");
     for (int i = 0; i < 5; ++i)
         scanf("%d", data + i);
 

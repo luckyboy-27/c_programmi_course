@@ -52,9 +52,9 @@ int main() {
     //printf("%d\n", GetValue(head, 5)); //input the position not the value
     //printf("%d\n", remove_position(head, 0)->data);  // will lose 45 because i remove first position
     //printf("after removing, count data change --> lost the node whose position we input\n");
-    printf("after removing, count data change --> lost the node whose value we input\n");
-    printf("%d\n", remove_value(head, 45)->data); // will return 98, because 45 is the first value
-    printf("%d\n", count_nodes(head));
+    //printf("after removing, count data change --> lost the node whose value we input\n");
+    //printf("%d\n", remove_value(head, 45)->data); // will return 98, because 45 is the first value
+    //printf("%d\n", count_nodes(head));
     //printf("%d\n", search(head, 27));
 
     free(head);
@@ -102,7 +102,7 @@ int GetValue(node *head, int position) {
     }
     else {
         printf("position not valid\n");
-        return 404;
+        return -1;
     }
 }
 
@@ -156,7 +156,8 @@ node *insert(node *head, int value, int position) {
         }
 
         if (i != position) {
-            head = insert_tail(head, value); // if the position is bigger than the size of the struct we can automatically assign it to the last postion
+            head = insert_tail(head, value); 
+            // if the position is bigger than the size of the struct we can automatically assign it to the last postion
         } 
         else {
             new->link = ptr->link;
